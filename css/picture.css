@@ -1,0 +1,13 @@
+img {
+  border : 5px solid black;
+}
+
+.picture-wrapper {
+  margin: 0 auto;
+  width: 500px;
+  border: 2px solid grey;
+}
+
+.carousel-caption > h1{
+  color: hotpink;
+}
