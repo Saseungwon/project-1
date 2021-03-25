@@ -1,5 +1,5 @@
 # project-1
-
+- JavaScript 첫번째 프로젝트
 
 ```html
 <!-- 합쳐지고 최소화된 최신 CSS -->
