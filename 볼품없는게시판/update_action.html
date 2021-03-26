@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="../js/jsp.js"></script>
+<script>
+    var v_ggg = request.getParameter("nm_ggg"); //글의 고유 키 값
+    var v_title = request.getParameter("nm_title");
+    var v_skills = request.getParameterValues("nm_skills");
+    var v_content = request.getParameter("nm_content");
+
+
+    var v_tblName = "uglyGesi"//고정키값 - > 관계형DB의 table명에 해당
+    v_tblData = JSON.parse(localStorage.getItem(v_tblName));
+    
+    //수정해야 할 글만 찾아서 업데이트
+    for(var i=0; i<v_tblData.length; i++){
+        if(v_tblData[i].ggg == v_ggg){
+            v_tblData[i].title = v_title;
+            v_tblData[i].skills = v_skills;
+            v_tblData[i].content = v_content;
+            v_tblData[i].date = (new Date()).toLocaleDateString();
+            break;
+        }
+    }
+
+    localStorage.setItem(v_tblName, JSON.stringify(v_tblData));
+
+    alert("잘 수정되었을걸여?");
+
+    location.href="list.html";
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+    //한국 성씨(복성포함), 나무위키 참조
+    var v_korFamilyNames = "김,이,박,최,정,강,조,윤,장,임,한,오,서,신,권,황,안,송,전,홍,류,고,문,량,손," +
+                        "배,조,백,허,유,남,심,로,정,하,곽,성,차,주,우,구,신,임,전,민,유,류,나,진,지," + 
+                        "엄,채,원,천,방,공,강,현,함,변,염,양,변,여,추,노,도,소,신,석,선,설,마,길,주," + 
+                        "연,방,위,표,명,기,반,라,왕,금,옥,육,인,맹,제,모,장,탁,국,여,진,어,은,편," + 
+                        "남궁,독고,황보,제갈,사공,선우,서문,어금,망절,무본,황목,등정,장곡,강전";
+    
+    //이름에 자주 쓰이는 글자들 인터넷 참조
+    var v_korNames = "성,영,상,재,종,정,동,용,승,경," +
+                    "호,수,석,철,훈,현,진,영,환,식," +
+                    "미,은,선,혜,지,덕,방,원,우,다," +
+                    "희,숙,자,순,주,솔,별,국,민,일," +
+                    "바,휴,왕,웅,범,대,익,중,낙,택," +
+                    "권,황,율,률,술,걸,탁,백,룡,건," +
+                    "애,난,소,분,아,매,말,녀,름,자," +
+                    "란,임,라,충,슬,준,옥,찬,림,례," +
+                    "필,규,한,예";
+
+    v_korFamilyNames = v_korFamilyNames.split(",");
+    v_korNames = v_korNames.split(",");
+
+    function f_fmlyName(){
+        return v_korFamilyNames[ Math.floor(Math.random()*v_korFamilyNames.length)];
+    }
+    function f_names(){
+        return v_korNames[Math.floor(Math.random()*v_korNames.length)] + 
+               v_korNames[Math.floor(Math.random()*v_korNames.length)];
+    }
+
+    function f_ranName(){
+        return f_fmlyName() + f_names();
+    }
+
+    //localStorage 더미데이터 생성
+    var v_tblName = "uglyGesi"
+    var v_datas = []; //전체 json에 담을 빈 배열 생성
+    var v_dataLength = 108; //108개
+    var v_skillData = ["fe","be","db"];
+    for(var i=1; i<=v_dataLength; i++){
+        var v_gul = {};  //글 1개를 나타내는 객체
+        v_gul.ggg = i;
+        v_gul.title = "챔피언 타이틀 " + i;
+        if(i%30==0){
+            v_gul.writer = f_ranName().slice(0, -1); // 랜덤한 이름 만들어서 넣습니다, 30번에 한번 이름이 외자인 사람이 나옵니다
+        }else{
+            v_gul.writer = f_ranName(); // 랜덤한 이름 만들어서 넣습니다, 30번에 한번 이름이 외자인 사람이 나옵니다
+        }
+        v_gul.skills = []; //여기에 랜덤하게 1~3개의 값을 넣으시오, v_skillsData중에
+        for(var j=1; j<=Math.ceil(Math.random()*3)+1; j++){
+            v_gul.skills.push(v_skillData[j - 1]);
+        }
+        v_gul.content = "내용 " + i;
+        v_gul.date = (new Date()).toLocaleDateString();
+        v_datas.push(v_gul);  //글 객체를 배열에 담아줌
+    }
+    localStorage.setItem(v_tblName, JSON.stringify(v_datas));
+</script>

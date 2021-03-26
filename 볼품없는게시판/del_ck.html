@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="../js/jsp.js"></script>
+<script>
+
+    var v_delck = request.getParameterValues("nm_del");
+
+    var v_tblName = "uglyGesi"//고정키값 - > 관계형DB의 table명에 해당
+    v_tblData = JSON.parse(localStorage.getItem(v_tblName));
+    
+    //삭제해야 할 글만 찾아서 업데이트
+    for(var i=0; i<v_delck.length; i++){
+        for(var j=0; j<v_tblData.length; j++){
+            if((v_tblData[j].ggg) == v_delck[i]){
+                v_tblData.splice(j,1);
+                break;
+            }
+        }
+    }
+
+    localStorage.setItem(v_tblName, JSON.stringify(v_tblData));
+
+    alert("잘 삭제되었을걸여?");
+
+    location.href="list.html";
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="../js/jsp.js"></script>
+<script>
+    var v_title = request.getParameter("nm_title");
+    var v_writer = request.getParameter("nm_writer");
+    var v_skills = request.getParameterValues("nm_skills");
+    var v_content = request.getParameter("nm_content");
+
+    //텡
+    var v_tblName = "uglyGesi"//고정키값 - > 관계형DB의 table명에 해당
+    var v_tblData = [];
+    var v_ggg = 1;
+
+    if(localStorage.getItem(v_tblName)){
+        v_tblData = JSON.parse(localStorage.getItem(v_tblName));
+        v_ggg = v_tblData[v_tblData.length-1].ggg + 1;
+    }
+
+    var v_gul = {};
+    v_gul.ggg = v_ggg; //중복안되는 값만 가지는 속성이 하나 필요
+    v_gul.title = v_title;
+    v_gul.writer = v_writer;
+    v_gul.skills = v_skills;
+    v_gul.content = v_content;
+    v_gul.date = (new Date()).toLocaleDateString();
+
+    //묶어준 객체를 배열에 
+    v_tblData.push(v_gul);
+    
+    localStorage.setItem(v_tblName, JSON.stringify(v_tblData));
+
+    alert("잘 저장되었을걸여?");
+
+    location.href="list.html";
+</script>

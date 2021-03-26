@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/jsp.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<h1>볼품없는 게시판 글 쓰기</h1>
+<hr>
+<!-- 제목/글쓴이/내용 -->
+<form action="update_action.html" method="GET">
+    <table border="1">
+        <tr>
+            <td>제목</td>
+            <td><input type="text" id="id_title" name="nm_title" value="" required>
+                <input type="hidden" id="id_ggg" name="nm_ggg" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>글쓴이</td>
+            <td><input type="text" id="id_writer" name="nm_writer" value="" required></td>
+        </tr>
+        <tr>
+            <td>보유기술</td>
+            <td>
+                FE<input type="checkbox" name="nm_skills" value="fe">
+                BE<input type="checkbox" name="nm_skills" value="be">
+                DB<input type="checkbox" name="nm_skills" value="db">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><textarea id="id_content" name="nm_content" cols="40" rows="10" required></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="수정">
+                <input id="id_delbtn" type="button" value="삭제">
+                <a href="#" id="id_del">삭제</a>
+                <a href="list.html">리스트</a>
+            </td>
+        </tr> 
+    </table>
+</form>
+<script>
+    var v_delbtn = document.getElementById("id_delbtn");
+    v_delbtn.onclick = function () {
+        document.forms[0].action="delete.html"; //form태그의 action 속성값 강제 변경
+        document.forms[0].submit(); // form객체의 submit 메소드를 이용하여 강제 전송
+    }
+
+    var v_ggg = request.getParameter("g_id");
+    document.getElementById("id_del").href = "delete.html?nm_ggg=" + v_ggg;
+    document.getElementById("id_ggg").value = v_ggg;
+
+    var v_tblName = "uglyGesi";
+    var v_gulDatas = JSON.parse(localStorage.getItem("uglyGesi"));
+    var v_gul;
+    for(var i=0; i<v_gulDatas.length; i++){
+        if(v_gulDatas[i].ggg == v_ggg){
+            v_gul = v_gulDatas[i];
+            break;
+        }
+    }
+    
+    document.getElementById("id_title").value = v_gul.title;
+    document.getElementById("id_writer").value = v_gul.writer;
+    document.getElementById("id_content").value = v_gul.content;
+    
+    // alert(v_gul.skills);
+    var v_ckBoxes = document.getElementsByName("nm_skills");
+
+    for(var i=0; i<v_gul.skills.length; i++){
+        for(var j=0; j<v_ckBoxes.length; j++){
+            if(v_ckBoxes[j].value == v_gul.skills[i]){
+                v_ckBoxes[j].checked = true;
+                break;
+            }
+        }
+    }
+
+
+
+</script>
+</body>
+</html>
