@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/start.css" />
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+  
+          <div class="cover-container">
+  
+            <div class="masthead clearfix">
+              <div class="inner">
+                <h3 class="masthead-brand">게시판</h3>
+                <nav>
+                  <ul class="nav masthead-nav">
+                    <li><a href="start.html">개과사전</a></li>
+                    <li><a href="picture.html">사진첩</a></li>
+                    <li class="active"><a href="#">게시판</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+  
+            <div class="inner cover">
+              <h1 class="cover-heading">정보공유해요!</h1> <br><br>
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">작성자</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성시간</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+
+
+
+
+
+
+
+                  <div id="id_disp"></div>
+                  <script>
+                      var v_disp = document.getElementById("id_disp");
+                      var v_tblName="uglyGesi";
+                      var v_gulDatas = JSON.parse(localStorage.getItem(v_tblName));
+                      //page 나누깅
+                      var v_gsPerPage = 10;  // 페이지당 글이 몇개 나오게 할 것인가?, 이게 있어야 산수 가능
+                      var v_totalGs = v_gulDatas.length;  // 108
+                      var v_totalPageSu = Math.ceil(v_totalGs / v_gsPerPage); // 토탈 페이지 수
+                  
+                      var v_curPage = 1; //  현재 페이지를 나타내는 변수, 일단 1페이지라고 가정
+                      if(request.getParameter("pg_num")){
+                          v_curPage = request.getParameter("pg_num");
+                      }
+                  
+                      var v_startNum =  (v_curPage -1) * v_gsPerPage; // (1-1) * 10 = 0 
+                      var v_endNum = v_startNum +  v_gsPerPage;    // 0 + 10 =10
+                      if(v_curPage == v_totalPageSu){
+                          v_endNum = v_totalGs;         // 배열의 마지막 index 번호
+                      }
+                      var v_tblStr = "<form action='del_ck.html' method=get>";
+                      v_tblStr += "<table border=1 width=500>";
+                      v_tblStr += "<tr><td>넘버</td><td>삭제선택</td><td>글제목</td><td>글쓴이</td><td>날짜</td></tr>";
+                      for(var i=v_startNum; i<v_endNum; i++){
+                          v_tblStr += "<tr>";
+                          v_tblStr += "<td>" + (i+1) + "</td>";
+                          v_tblStr += "<td><input type=checkbox name=nm_del value=" + v_gulDatas[i].ggg + "></td>";
+                      //    v_tblStr += "<td><a href=read.html?g_id="+v_gulDatas[i].ggg + ">" + v_gulDatas[i].title + "</a></td>";
+                          v_tblStr += "<td><a href=#  onclick='f_read(" + v_gulDatas[i].ggg + ")'>" + v_gulDatas[i].title + "</a></td>";
+                          v_tblStr += "<td>" + v_gulDatas[i].writer + "</td>";
+                          v_tblStr += "<td>" + v_gulDatas[i].date + "</td>";
+                          v_tblStr += "</tr>";
+                      }
+                      v_tblStr += "</table>";
+                      v_tblStr += "<a href=write.html>글쓰깅</a><br>";
+                      v_tblStr += "<input type=submit value='선택된것만 삭제'></form>";
+                      //페이지 넘버 출력
+                      for(var i=1; i <= v_totalPageSu; i++){
+                          if(i== v_curPage){
+                              v_tblStr += "<a class=cl_cur href=list.html?pg_num=" + i + ">"+ i +"</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                          }else {
+                              v_tblStr += "<a href=list.html?pg_num=" + i + ">"+ i +"</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                          }
+                      }
+                  
+                      v_disp.innerHTML = v_tblStr;   // 화면 출력
+                  
+                      function f_read(p_ggg){
+                          event.preventDefault(); // a 태그의 기본기능(url넘기기) 막아버리깅
+                          window.open("read.html?g_id="+p_ggg,"ngm","left=50, top=50, width=300,height=500");
+                      }
+                  </script>   
+
+
+
+
+
+
+
+                </tbody>
+              </table> <br>
+              
+
+
+              
+              <p class="lead">
+                <a href="write.html" class="btn btn-lg btn-default">글작성</a>
+              </p>
+            </div>
+  
+            <div class="mastfoot">
+              <div class="inner">
+                <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
+    <!-- 합쳐지고 최소화된 최신 CSS 여기에 놓음 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>        
+
+    <script src="./js/start.js" > </script>
+</body>
+
+
+</html>
