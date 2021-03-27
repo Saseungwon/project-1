@@ -2,70 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/jsp.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/start.css" />
     <title>Document</title>
-<style>
-    /* 현재 페이지만 크게 보이겡*/
-    .cl_cur {
-        font-size:50px;
-        color:red;
-    }
-</style>
 </head>
 <body>
-<h1>볼품없는 게시판 리스트</h1>
-<hr>
-<div id="id_disp"></div>
-<script>
-    var v_disp = document.getElementById("id_disp");
-    var v_tblName="uglyGesi";
-    var v_gulDatas = JSON.parse(localStorage.getItem(v_tblName));
+    
+    <div class="site-wrapper">
 
-    //page 나누기
-    var v_gsPerPage = 10;  // 페이지당 나오는 글의 수
-    var v_totalGs = v_gulDatas.length;  // 108
-    var v_totalPageSu = Math.ceil(v_totalGs / v_gsPerPage); // 토탈 페이지 수
+        <div class="site-wrapper-inner">
+  
+          <div class="cover-container">
+  
+            <div class="masthead clearfix">
+              <div class="inner">
+                <h3 class="masthead-brand">게시판</h3>
+                <nav>
+                  <ul class="nav masthead-nav">
+                    <li><a href="start.html">개과사전</a></li>
+                    <li><a href="picture.html">사진첩</a></li>
+                    <li class="active"><a href="#">게시판</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+  
+            <div class="inner cover">
+              <h1 class="cover-heading">정보공유해요!</h1> <br><br>
 
-    var v_curPage = 1; //  현재 페이지를 나타내는 변수, 일단 1페이지라고 가정
-    if(request.getParameter("pg_num")){
-        v_curPage = request.getParameter("pg_num"); //아래에서 a태그에 준 pg_num의 파라미터를 받아옴
-    }
+              <table class="table table-striped">
+                  <div id="id_disp">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">제목</th>
+                          <th scope="col">작성자</th>
+                          <th scope="col">견종</th>
+                          <th scope="col">작성일자</th>
+                        </tr>
+                      </thead>
+                      <tbody id="dogInfoTable">
+                      </tbody>
+                    </table>
 
-    var v_startNum =  (v_curPage -1) * v_gsPerPage; // (1-1) * 10 = 0 
-    var v_endNum = v_startNum +  v_gsPerPage;    // 0 + 10 =10
 
-    if(v_curPage == v_totalPageSu){ //마지막페이지 출력
-        v_endNum = v_totalGs; //배열의 마지막 index번호
-    } 
+                  </div> 
+              </table> <br>
 
-    var v_tblStr = "<form action='del_ck.html' method=get>";
-    v_tblStr += "<table border=1 width=400>";
-    v_tblStr += "<tr><td>넘버</td><td>삭제선택</td><td>글제목</td><td>글쓴이</td><td>날짜</td></tr>";
+              <p class="lead">
+                <a href="write.html" class="btn btn-lg btn-default">글작성</a>
+              </p>
+            </div>
+  
+            <div class="mastfoot">
+              <div class="inner">
+                <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
 
-    for(var i=v_startNum; i<v_endNum; i++){
-        v_tblStr += "<tr>";
-        v_tblStr += "<td>" + (i+1) + "</td>";
-        v_tblStr += "<td><input type=checkbox name=nm_del value=" + v_gulDatas[i].ggg + "></td>";
-        v_tblStr += "<td><a href=read.html?g_id=" + v_gulDatas[i].ggg + ">" + v_gulDatas[i].title + "</a></td>";
-        v_tblStr += "<td>" + v_gulDatas[i].writer + "</td>";
-        v_tblStr += "<td>" + v_gulDatas[i].date + "</td>";
-        v_tblStr += "</tr>";
-    }
-    v_tblStr += "</table>";
-    v_tblStr += "<a href=write.html>글쓰기</a><br>";
-    v_tblStr += "<input type=submit value='선택한 것만 삭제'><br></form>";
-    //페이지 넘버 출력
-    for(var i=1; i <= v_totalPageSu; i++){
-        if(i== v_curPage){
-            v_tblStr += "<a class=cl_cur href=list.html?pg_num=" + i + ">"+ i +"</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-        }else {
-            v_tblStr += "<a href=list.html?pg_num=" + i + ">"+ i +"</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-        }
-    }
+    <!-- 합쳐지고 최소화된 최신 CSS 여기에 놓음 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>        
 
-    v_disp.innerHTML = v_tblStr;   // 화면 출력
-</script>   
- 
+    <script src="./js/start.js" > </script>
+    <script src="./js/storage.js" > </script>
+    <script src="./list.js" > </script>
+
 </body>
+
+
 </html>

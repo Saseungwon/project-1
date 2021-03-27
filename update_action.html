@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="./js/jsp.js"></script>
+<script>
+
+    //사용자 값 받아오기
+    var v_ggg = request.getParameter("nm_ggg"); // 글의 고유 키값
+    var v_title = request.getParameter("nm_title");
+    var v_select = request.getParameter("nm_select");
+    var v_text = request.getParameter("nm_text");
+
+    //테이블명 지정
+    var v_tblName = "DogGesi";  // 고정키값 -> 관계형DB의 table명에 해당
+    v_tblData = JSON.parse(localStorage.getItem(v_tblName));
+    
+    //수정해야 할 글만 찾아서 업데이트
+    for(var i=0; i<v_tblData.length; i++){
+        if(v_tblData[i].ggg == v_ggg){
+            v_tblData[i].title = v_title;
+            v_tblData[i].select = v_select;
+            v_tblData[i].text = v_text;
+            v_tblData[i].date = (new Date()).toLocaleDateString();
+            break;
+        }
+    }
+
+    //업데이트된 배열로 LocalStorage 다시 쓰깅
+    localStorage.setItem(v_tblName,JSON.stringify(v_tblData));
+
+    alert("글이 잘 수정 되었습니다");
+    //일반적으로 글이 써졌으면 리스트(목록) 페이지로 넘어감
+    location.href = "list.html";
+</script>

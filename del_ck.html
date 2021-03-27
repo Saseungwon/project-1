@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="./js/jsp.js"></script>
+<script>
+    var v_delGGG=request.getParameterValues("nm_del");
+    var v_tblName = "DogGesi";
+    var v_datas = JSON.parse(localStorage.getItem(v_tblName));
+    for(var i=0; i< v_delGGG.length; i++){
+        for(var j=0; j<v_datas.length; j++){
+            if(v_datas[j].ggg == v_delGGG[i]){
+                v_datas.splice(j,1);
+                break;                    // 빼먹지 말아야 함
+            }
+        }
+    }
+    localStorage.setItem(v_tblName, JSON.stringify(v_datas));
+    location.href="list.html"; // 페이지 돌리깅
+</script>
