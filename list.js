@@ -40,12 +40,14 @@ function appendTableContents() {
         return;
     }
     
-    for (let i = 0; i < dogsInfo.length; i++) {
+    for (var i = 0; i < dogsInfo.length; i++) {
         var dogInfo = dogsInfo[i];
         
+        var url = 'read.html?id=' + dogInfo.no;
+
         tagStr += '<tr>';
-        tagStr += '<th scope="row" >' + (i + 1) + '</th>';
-        tagStr += '<td><a href="read.html?g_id="' + dogInfo.ggg + ">" +  dogInfo.title + '</a></td>';
+        tagStr += '<th scope="row" >' + dogInfo.no + '</th>';
+        tagStr += '<td><a href="' + url + '">' +  dogInfo.title + '</a></td>';
         tagStr += '<td>' + dogInfo.writer + '</td>';
         tagStr += '<td>' + converToDogBreed(dogInfo.breed) + '</td>';
         tagStr += '<td>' + dogInfo.created + '</td>';
