@@ -45,7 +45,7 @@ function appendTableContents() {
         
         tagStr += '<tr>';
         tagStr += '<th scope="row" >' + (i + 1) + '</th>';
-        tagStr += '<td>' + dogInfo.title + '</td>';
+        tagStr += '<td><a href="read.html?g_id="' + dogInfo.ggg + ">" +  dogInfo.title + '</a></td>';
         tagStr += '<td>' + dogInfo.writer + '</td>';
         tagStr += '<td>' + converToDogBreed(dogInfo.breed) + '</td>';
         tagStr += '<td>' + dogInfo.created + '</td>';
@@ -58,7 +58,6 @@ function appendTableContents() {
 
 function init() {
     appendTableContents();
-    alert("작성이 완료되었습니다!");
 }
 
 init();
