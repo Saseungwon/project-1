@@ -1,3 +1,5 @@
+
+// 키값에 따라 벨류값 지정 기능
 function converToDogBreed(numberBreed) {
     var dogBreedData = {
         '1': '없음',
@@ -15,6 +17,8 @@ function converToDogBreed(numberBreed) {
     return dogBreedData[numberBreed];
 }
 
+
+// 리스트에 글 없을 때 메세지 출력 기능
 function emptyMessage() {
     var tagStr = '';
 
@@ -25,13 +29,14 @@ function emptyMessage() {
     return tagStr;
 }
 
+// 테이블 컨텐츠들 합치는 기능 
 function appendTableContents() {
     var tagStr = '';
     var table = $('#dogInfoTable');
     var dogsInfo = loadItem('userDogInfo');
 
     if (!dogsInfo) {
-        table.append(emptyMessage());
+        table.append(emptyMessage()); // dogsInfo에 글 없으면  emptyMessage 리턴 
         return;
     }
     
@@ -53,6 +58,7 @@ function appendTableContents() {
 
 function init() {
     appendTableContents();
+    alert("작성이 완료되었습니다!");
 }
 
 init();
