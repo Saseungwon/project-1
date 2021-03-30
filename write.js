@@ -14,7 +14,7 @@ $('#dogForm').submit(function(event) {
 
     // localStorage에 값이 존재하지 않으면 새로운 배열을 만든다.
     var dogFormList = loadItem('userDogInfo') || [];
-
+ 
     data.no = dogFormList.length + 1;
     data.created = convertDate();
 

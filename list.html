@@ -35,10 +35,12 @@
 
               <table class="table table-striped">
                   <div id="id_disp">
+                    <form id="id_form" action="del_ck.html" method="get" ></form>
                     <table class="table">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
+                          <th scope="col">삭제</th>
                           <th scope="col">제목</th>
                           <th scope="col">작성자</th>
                           <th scope="col">견종</th>
@@ -48,6 +50,7 @@
                       <tbody id="dogInfoTable"> <!-- list.js 에서 만든 거 tbody에 삽입 -->
                       </tbody>
                     </table>
+                  </form>
 
 
                   </div> 
@@ -55,6 +58,7 @@
 
               <p class="lead">
                 <a href="write.html" class="btn btn-lg btn-default">글작성</a>
+                <button class="btn btn-lg btn-default" type="submit" >선택삭제</button> 
               </p>
             </div>
   

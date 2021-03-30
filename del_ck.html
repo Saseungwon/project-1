@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <script src="./js/jsp.js"></script>
+<script src="./js/storage.js"></script>
 <script>
     var v_delGGG=request.getParameterValues("nm_del");
-    var v_tblName = "DogGesi";
-    var v_datas = JSON.parse(localStorage.getItem(v_tblName));
+    var v_tblName = "userDogsInfo";
+    var v_datas = loadItem(v_tblName);
     for(var i=0; i< v_delGGG.length; i++){
         for(var j=0; j<v_datas.length; j++){
             if(v_datas[j].ggg == v_delGGG[i]){
@@ -13,6 +14,6 @@
             }
         }
     }
-    localStorage.setItem(v_tblName, JSON.stringify(v_datas));
+    setItem(v_tblName, v_datas);
     location.href="list.html"; // 페이지 돌리깅
 </script>
