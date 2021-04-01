@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<script src="./js/jsp.js"></script>
 <script src="./js/storage.js"></script>
+<script src="./js/utils.js" type="text/javascript"></script>
+<script src="./js/storage.js" type="text/javascript"></script>
+<script src="./js/serializeObject.js" type="text/javascript"></script>
+<script src="./js/request.js" type="text/javascript"></script>
+
 <script>
-    var v_delGGG=request.getParameterValues("nm_del");
-    var v_tblName = "userDogsInfo";
+    var del_no=request.getParameterValues("del");
+    var v_tblName = "userDogInfo";
     var v_datas = loadItem(v_tblName);
-    for(var i=0; i< v_delGGG.length; i++){
+    for(var i=0; i< del_no.length; i++){
         for(var j=0; j<v_datas.length; j++){
-            if(v_datas[j].ggg == v_delGGG[i]){
+            if(v_datas[j].no == del_no[i]){
                 v_datas.splice(j,1);
                 break;                    // 빼먹지 말아야 함
             }

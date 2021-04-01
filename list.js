@@ -48,7 +48,7 @@ function appendTableContents() {
         
         tagStr += '<tr>';
         tagStr += '<th scope="row" >' + dogInfo.no + '</th>';
-        tagStr += "<td><input type=checkbox name=nm_del value=" + dogInfo.no + "></td>";
+        tagStr += "<td><input type=checkbox name=del value=" + dogInfo.no + "></td>";
         tagStr += '<td><a href="' + url + '">' +  dogInfo.title + '</a></td>';
         tagStr += '<td>' + dogInfo.writer + '</td>';
         tagStr += '<td>' + converToDogBreed(dogInfo.breed) + '</td>';
