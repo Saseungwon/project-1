@@ -1,10 +1,6 @@
-# project-1
-- JavaScript 첫번째 프로젝트
-
-```html
-<!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-```
+# 📚 반려견 정보공유 게시판
+#### javaScript를 사용하여 게시판 CRUD를 구현해봤습니다. 
+    - C : 게시판에 글 작성 버튼을 눌러서 글을 쓴 후 저장하면 데이터가 로컬스토리지에 담기게 구현했습니다.
+    - R : 로컬스토리지에 담긴 데이터가 리스트에 출력되고, 제목을 누르면 해당 데이터 값이 담긴 읽기 페이지로 넘어갑니다.
+    - U : Read에 있던 데이터가 작성자를 제외한 나머지를 수정할 수 있도록 넘어오게 되고, 저장버튼을 누르면 수정된 데이터가 저장됩니다. 
+    - D : 삭제하기 버튼을 누르면 로컬스토리지와 리스트에서 데이터가 사라집니다. 
